@@ -1,6 +1,6 @@
 package com.uevitondev.catalog.services;
 
-import com.uevitondev.catalog.entities.Category;
+import com.uevitondev.catalog.dto.CategoryDTO;
 import com.uevitondev.catalog.repository.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,8 +15,11 @@ public class CategoryService {
     private CategoryRepository categoryRepository;
 
     @Transactional(readOnly = true)
-    public List<Category> findAllCategories() {
-        return categoryRepository.findAll();
+    public List<CategoryDTO> findAllCategories() {
+        return categoryRepository.findAll()
+                .stream()
+                .map(CategoryDTO::new)
+                .toList();
     }
 
 }

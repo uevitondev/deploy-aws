@@ -1,6 +1,6 @@
 package com.uevitondev.catalog.resource;
 
-import com.uevitondev.catalog.entities.Category;
+import com.uevitondev.catalog.dto.CategoryDTO;
 import com.uevitondev.catalog.services.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -18,9 +18,8 @@ public class CategoryResource {
     private CategoryService categoryService;
 
     @GetMapping("/all")
-    public ResponseEntity<List<Category>> findAllCategories() {
-        List<Category> categoryList = categoryService.findAllCategories();
-        return ResponseEntity.ok().body(categoryList);
+    public ResponseEntity<List<CategoryDTO>> findAllCategories() {
+        return ResponseEntity.ok().body(categoryService.findAllCategories());
     }
 
 }
