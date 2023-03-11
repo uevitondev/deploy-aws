@@ -3,7 +3,8 @@ package com.uevitondev.catalog.services;
 import com.uevitondev.catalog.dto.CategoryDTO;
 import com.uevitondev.catalog.entities.Category;
 import com.uevitondev.catalog.repository.CategoryRepository;
-import com.uevitondev.catalog.services.exceptions.EntityNotFoundException;
+import com.uevitondev.catalog.services.exceptions.ResourceNotFoundException;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -27,7 +28,7 @@ public class CategoryService {
     @Transactional(readOnly = true)
     public CategoryDTO findCategoryById(Long id) {
         Category category = categoryRepository.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException("Entity not found! id: " + id));
+                .orElseThrow(() -> new ResourceNotFoundException("Entity not found! id: " + id));
         return new CategoryDTO(category);
     }
 
@@ -39,4 +40,16 @@ public class CategoryService {
         return new CategoryDTO(category);
     }
 
+    @Transactional
+    public CategoryDTO updateCategory(Long id, CategoryDTO categoryDTO) {
+        try {
+            Category category = categoryRepository.getReferenceById(id);
+            category.setName(categoryDTO.getName());
+            category = categoryRepository.save(category);
+            return new CategoryDTO(category);
+        } catch (EntityNotFoundException e) {
+            throw new ResourceNotFoundException("Id not found! id: " + id);
+        }
+
+    }
 }
