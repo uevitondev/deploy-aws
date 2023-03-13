@@ -30,8 +30,7 @@ public class CategoryResource {
     @PostMapping("/insert")
     public ResponseEntity<CategoryDTO> insertCategory(@RequestBody CategoryDTO categoryDTO) {
         categoryDTO = categoryService.insertCategory(categoryDTO);
-        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
-                .buildAndExpand(categoryDTO.getId()).toUri();
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(categoryDTO.getId()).toUri();
         return ResponseEntity.created(uri).body(categoryDTO);
     }
 
@@ -40,4 +39,11 @@ public class CategoryResource {
         categoryDTO = categoryService.updateCategory(id, categoryDTO);
         return ResponseEntity.ok().body(categoryDTO);
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> updateCategory(@PathVariable Long id) {
+        categoryService.deleteCategory(id);
+        return ResponseEntity.noContent().build();
+    }
+
 }

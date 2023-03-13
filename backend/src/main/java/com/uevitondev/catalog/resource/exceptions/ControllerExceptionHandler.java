@@ -1,5 +1,6 @@
 package com.uevitondev.catalog.resource.exceptions;
 
+import com.uevitondev.catalog.services.exceptions.DatabaseException;
 import com.uevitondev.catalog.services.exceptions.ResourceNotFoundException;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpStatus;
@@ -14,13 +15,27 @@ public class ControllerExceptionHandler {
 
     @ExceptionHandler(ResourceNotFoundException.class)
     public ResponseEntity<StandardError> resourceNotFoundException(ResourceNotFoundException e, HttpServletRequest servletRequest) {
+        HttpStatus status = HttpStatus.NOT_FOUND;
         StandardError standardError = new StandardError();
         standardError.setTimestamp(Instant.now());
-        standardError.setStatus(HttpStatus.NOT_FOUND.value());
+        standardError.setStatus(status.value());
         standardError.setError("Not found!");
         standardError.setMessage(e.getMessage());
         standardError.setPath(servletRequest.getRequestURI());
 
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(standardError);
+        return ResponseEntity.status(status).body(standardError);
+    }
+
+    @ExceptionHandler(DatabaseException.class)
+    public ResponseEntity<StandardError> databaseException(DatabaseException e, HttpServletRequest servletRequest) {
+        HttpStatus status = HttpStatus.BAD_REQUEST;
+        StandardError standardError = new StandardError();
+        standardError.setTimestamp(Instant.now());
+        standardError.setStatus(status.value());
+        standardError.setError("Database Exception!");
+        standardError.setMessage(e.getMessage());
+        standardError.setPath(servletRequest.getRequestURI());
+
+        return ResponseEntity.status(status).body(standardError);
     }
 }
