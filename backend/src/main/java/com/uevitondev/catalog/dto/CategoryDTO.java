@@ -2,7 +2,9 @@ package com.uevitondev.catalog.dto;
 
 import com.uevitondev.catalog.entities.Category;
 
-public class CategoryDTO {
+import java.io.Serializable;
+
+public class CategoryDTO implements Serializable {
 
     private Long id;
     private String name;
@@ -15,7 +17,7 @@ public class CategoryDTO {
         this.name = name;
     }
 
-    public CategoryDTO(Category category){
+    public CategoryDTO(Category category) {
         this.id = category.getId();
         this.name = category.getName();
     }
