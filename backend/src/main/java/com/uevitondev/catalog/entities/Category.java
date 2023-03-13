@@ -2,12 +2,13 @@ package com.uevitondev.catalog.entities;
 
 import jakarta.persistence.*;
 
+import java.io.Serializable;
 import java.time.Instant;
 import java.util.Objects;
 
 @Entity
 @Table(name = "tb_category")
-public class Category {
+public class Category implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -54,12 +55,12 @@ public class Category {
     }
 
     @PrePersist
-    public void prePersist(){
+    public void prePersist() {
         this.createdAt = Instant.now();
     }
 
     @PreUpdate
-    public void preUpdate(){
+    public void preUpdate() {
         this.upadatedAt = Instant.now();
     }
 
