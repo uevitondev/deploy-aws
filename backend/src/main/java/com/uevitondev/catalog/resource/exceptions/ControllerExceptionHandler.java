@@ -1,7 +1,6 @@
 package com.uevitondev.catalog.resource.exceptions;
 
 import com.uevitondev.catalog.services.exceptions.DatabaseException;
-import com.uevitondev.catalog.services.exceptions.PageablePropertyException;
 import com.uevitondev.catalog.services.exceptions.ResourceNotFoundException;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpStatus;
@@ -34,19 +33,6 @@ public class ControllerExceptionHandler {
         standardError.setTimestamp(Instant.now());
         standardError.setStatus(status.value());
         standardError.setError("Database Exception!");
-        standardError.setMessage(e.getMessage());
-        standardError.setPath(servletRequest.getRequestURI());
-
-        return ResponseEntity.status(status).body(standardError);
-    }
-
-    @ExceptionHandler(PageablePropertyException.class)
-    public ResponseEntity<StandardError> databaseException(PageablePropertyException e, HttpServletRequest servletRequest) {
-        HttpStatus status = HttpStatus.BAD_REQUEST;
-        StandardError standardError = new StandardError();
-        standardError.setTimestamp(Instant.now());
-        standardError.setStatus(status.value());
-        standardError.setError("Property invalid!");
         standardError.setMessage(e.getMessage());
         standardError.setPath(servletRequest.getRequestURI());
 

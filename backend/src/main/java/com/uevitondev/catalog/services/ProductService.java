@@ -7,15 +7,13 @@ import com.uevitondev.catalog.entities.Product;
 import com.uevitondev.catalog.repository.CategoryRepository;
 import com.uevitondev.catalog.repository.ProductRepository;
 import com.uevitondev.catalog.services.exceptions.DatabaseException;
-import com.uevitondev.catalog.services.exceptions.PageablePropertyException;
 import com.uevitondev.catalog.services.exceptions.ResourceNotFoundException;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.mapping.PropertyReferenceException;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -29,20 +27,15 @@ public class ProductService {
     private CategoryRepository categoryRepository;
 
     @Transactional(readOnly = true)
-    public Page<ProductDTO> findAllProductsPaged(Pageable pageable) {
-        try {
-            Page<Product> categoryPage = productRepository.findAll(pageable);
-            return categoryPage.map(ProductDTO::new);
-
-        } catch (PropertyReferenceException e) {
-            throw new PageablePropertyException(e.getMessage());
-        }
-
+    public Page<ProductDTO> findAllProductsPaged(PageRequest pageRequest) {
+        Page<Product> categoryPage = productRepository.findAll(pageRequest);
+        return categoryPage.map(ProductDTO::new);
     }
 
     @Transactional(readOnly = true)
     public ProductDTO findProductById(Long id) {
-        Product product = productRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Entity not found! id: " + id));
+        Product product = productRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Entity not found! id: " + id));
         return new ProductDTO(product, product.getCategories());
     }
 
