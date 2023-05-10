@@ -1,4 +1,4 @@
-package com.uevitondev.catalog.repository;
+package com.uevitondev.catalog.repositories;
 
 import com.uevitondev.catalog.entities.Product;
 import com.uevitondev.catalog.tests.Factory;

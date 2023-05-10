@@ -1,10 +1,10 @@
 package com.uevitondev.catalog.services;
 
-import com.uevitondev.catalog.dto.ProductDTO;
+import com.uevitondev.catalog.dtos.ProductDTO;
 import com.uevitondev.catalog.entities.Category;
 import com.uevitondev.catalog.entities.Product;
-import com.uevitondev.catalog.repository.CategoryRepository;
-import com.uevitondev.catalog.repository.ProductRepository;
+import com.uevitondev.catalog.repositories.CategoryRepository;
+import com.uevitondev.catalog.repositories.ProductRepository;
 import com.uevitondev.catalog.services.exceptions.DatabaseException;
 import com.uevitondev.catalog.services.exceptions.ResourceNotFoundException;
 import com.uevitondev.catalog.tests.Factory;

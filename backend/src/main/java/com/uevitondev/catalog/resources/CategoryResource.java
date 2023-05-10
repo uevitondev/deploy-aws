@@ -1,6 +1,6 @@
-package com.uevitondev.catalog.resource;
+package com.uevitondev.catalog.resources;
 
-import com.uevitondev.catalog.dto.CategoryDTO;
+import com.uevitondev.catalog.dtos.CategoryDTO;
 import com.uevitondev.catalog.services.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;

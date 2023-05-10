@@ -1,4 +1,4 @@
-package com.uevitondev.catalog.resource.exceptions;
+package com.uevitondev.catalog.resources.exceptions;
 
 import java.time.Instant;
 

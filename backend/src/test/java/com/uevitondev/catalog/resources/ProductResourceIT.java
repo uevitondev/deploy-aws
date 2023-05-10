@@ -1,7 +1,7 @@
-package com.uevitondev.catalog.resource;
+package com.uevitondev.catalog.resources;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.uevitondev.catalog.dto.ProductDTO;
+import com.uevitondev.catalog.dtos.ProductDTO;
 import com.uevitondev.catalog.tests.Factory;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

@@ -1,7 +1,7 @@
 package com.uevitondev.catalog.services;
 
-import com.uevitondev.catalog.dto.ProductDTO;
-import com.uevitondev.catalog.repository.ProductRepository;
+import com.uevitondev.catalog.dtos.ProductDTO;
+import com.uevitondev.catalog.repositories.ProductRepository;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

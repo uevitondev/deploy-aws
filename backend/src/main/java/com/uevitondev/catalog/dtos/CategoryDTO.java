@@ -1,4 +1,4 @@
-package com.uevitondev.catalog.dto;
+package com.uevitondev.catalog.dtos;
 
 import com.uevitondev.catalog.entities.Category;
 

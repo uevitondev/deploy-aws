@@ -1,6 +1,6 @@
 package com.uevitondev.catalog.tests;
 
-import com.uevitondev.catalog.dto.ProductDTO;
+import com.uevitondev.catalog.dtos.ProductDTO;
 import com.uevitondev.catalog.entities.Category;
 import com.uevitondev.catalog.entities.Product;
 
