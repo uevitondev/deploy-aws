@@ -1,12 +1,15 @@
 package com.uevitondev.catalog.dtos;
 
 import com.uevitondev.catalog.entities.Category;
+import jakarta.validation.constraints.NotBlank;
 
 import java.io.Serializable;
 
 public class CategoryDTO implements Serializable {
 
     private Long id;
+
+    @NotBlank(message = "campo obrigatório!")
     private String name;
 
     public CategoryDTO() {

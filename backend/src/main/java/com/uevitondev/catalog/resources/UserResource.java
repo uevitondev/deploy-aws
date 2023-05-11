@@ -3,6 +3,7 @@ package com.uevitondev.catalog.resources;
 import com.uevitondev.catalog.dtos.UserDTO;
 import com.uevitondev.catalog.dtos.UserInsertDTO;
 import com.uevitondev.catalog.services.UserService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -30,7 +31,7 @@ public class UserResource {
     }
 
     @PostMapping
-    public ResponseEntity<UserDTO> insertUser(@RequestBody UserInsertDTO userInsertDTO) {
+    public ResponseEntity<UserDTO> insertUser(@RequestBody @Valid UserInsertDTO userInsertDTO) {
 
         UserDTO userDTO = userService.insertUser(userInsertDTO);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(userDTO.getId()).toUri();
@@ -38,7 +39,7 @@ public class UserResource {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<UserDTO> updateProduct(@PathVariable Long id, @RequestBody UserDTO userDTO) {
+    public ResponseEntity<UserDTO> updateProduct(@PathVariable Long id, @RequestBody @Valid UserDTO userDTO) {
         userDTO = userService.updateUser(id, userDTO);
         return ResponseEntity.ok().body(userDTO);
     }
