@@ -3,6 +3,7 @@ package com.uevitondev.catalog.services;
 import com.uevitondev.catalog.dtos.RoleDTO;
 import com.uevitondev.catalog.dtos.UserDTO;
 import com.uevitondev.catalog.dtos.UserInsertDTO;
+import com.uevitondev.catalog.dtos.UserUpdateDTO;
 import com.uevitondev.catalog.entities.Role;
 import com.uevitondev.catalog.entities.User;
 import com.uevitondev.catalog.repositories.RoleRepository;
@@ -61,12 +62,12 @@ public class UserService {
     }
 
     @Transactional
-    public UserDTO updateUser(Long id, UserDTO userDTO) {
+    public UserDTO updateUser(Long id, UserUpdateDTO userUpdateDTO) {
         try {
             User user = userRepository.getReferenceById(id);
-            user.setFirstName(userDTO.getFirstName());
-            user.setLastName(userDTO.getLastName());
-            user.setEmail(userDTO.getEmail());
+            user.setFirstName(userUpdateDTO.getFirstName());
+            user.setLastName(userUpdateDTO.getLastName());
+            user.setEmail(userUpdateDTO.getEmail());
             //user.setPassword(userDTO.getPassword());
             return new UserDTO(user);
         } catch (EntityNotFoundException e) {

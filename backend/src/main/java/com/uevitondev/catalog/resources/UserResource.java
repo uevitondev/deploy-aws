@@ -2,6 +2,7 @@ package com.uevitondev.catalog.resources;
 
 import com.uevitondev.catalog.dtos.UserDTO;
 import com.uevitondev.catalog.dtos.UserInsertDTO;
+import com.uevitondev.catalog.dtos.UserUpdateDTO;
 import com.uevitondev.catalog.services.UserService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,8 +40,8 @@ public class UserResource {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<UserDTO> updateProduct(@PathVariable Long id, @RequestBody @Valid UserDTO userDTO) {
-        userDTO = userService.updateUser(id, userDTO);
+    public ResponseEntity<UserDTO> updateUser(@PathVariable Long id, @RequestBody @Valid UserUpdateDTO userUpdateDTO) {
+        UserDTO userDTO = userService.updateUser(id, userUpdateDTO);
         return ResponseEntity.ok().body(userDTO);
     }
 
