@@ -4,12 +4,12 @@ import com.uevitondev.catalog.dtos.UserUpdateDTO;
 import com.uevitondev.catalog.entities.User;
 import com.uevitondev.catalog.repositories.UserRepository;
 import com.uevitondev.catalog.resources.exceptions.FieldMessage;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.validation.ConstraintValidator;
-import jakarta.validation.ConstraintValidatorContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.servlet.HandlerMapping;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.validation.ConstraintValidator;
+import javax.validation.ConstraintValidatorContext;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;

@@ -9,7 +9,6 @@ import com.uevitondev.catalog.repositories.ProductRepository;
 import com.uevitondev.catalog.services.exceptions.DatabaseException;
 import com.uevitondev.catalog.services.exceptions.PageablePropertyException;
 import com.uevitondev.catalog.services.exceptions.ResourceNotFoundException;
-import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -18,6 +17,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.mapping.PropertyReferenceException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import javax.persistence.EntityNotFoundException;
 
 @Service
 public class ProductService {
@@ -58,7 +59,7 @@ public class ProductService {
     @Transactional
     public ProductDTO updateProduct(Long id, ProductDTO productDTO) {
         try {
-            Product product = productRepository.getReferenceById(id);
+            Product product = productRepository.getOne(id);
             copyDtoToEntity(productDTO, product);
             product = productRepository.save(product);
             return new ProductDTO(product);
@@ -85,7 +86,7 @@ public class ProductService {
         product.setDate(productDTO.getDate());
         product.getCategories().clear();
         for (CategoryDTO categoryDTO : productDTO.getCategories()) {
-            Category category = categoryRepository.getReferenceById(categoryDTO.getId());
+            Category category = categoryRepository.getOne(categoryDTO.getId());
             product.getCategories().add(category);
         }
     }

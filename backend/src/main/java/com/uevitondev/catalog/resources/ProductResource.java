@@ -2,7 +2,6 @@ package com.uevitondev.catalog.resources;
 
 import com.uevitondev.catalog.dtos.ProductDTO;
 import com.uevitondev.catalog.services.ProductService;
-import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -10,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import javax.validation.Valid;
 import java.net.URI;
 
 @RestController
@@ -19,7 +19,7 @@ public class ProductResource {
     @Autowired
     private ProductService productService;
 
-    @GetMapping("/all")
+    @GetMapping
     public ResponseEntity<Page<ProductDTO>> findAllProductsPaged(Pageable pageable) {
         return ResponseEntity.ok().body(productService.findAllProductsPaged(pageable));
     }

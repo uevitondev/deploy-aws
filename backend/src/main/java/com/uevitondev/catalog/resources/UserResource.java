@@ -4,7 +4,6 @@ import com.uevitondev.catalog.dtos.UserDTO;
 import com.uevitondev.catalog.dtos.UserInsertDTO;
 import com.uevitondev.catalog.dtos.UserUpdateDTO;
 import com.uevitondev.catalog.services.UserService;
-import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -12,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import javax.validation.Valid;
 import java.net.URI;
 
 @RestController

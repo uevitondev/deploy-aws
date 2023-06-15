@@ -6,7 +6,6 @@ import com.uevitondev.catalog.repositories.CategoryRepository;
 import com.uevitondev.catalog.services.exceptions.DatabaseException;
 import com.uevitondev.catalog.services.exceptions.PageablePropertyException;
 import com.uevitondev.catalog.services.exceptions.ResourceNotFoundException;
-import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -15,6 +14,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.mapping.PropertyReferenceException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import javax.persistence.EntityNotFoundException;
 
 @Service
 public class CategoryService {
@@ -50,7 +51,7 @@ public class CategoryService {
     @Transactional
     public CategoryDTO updateCategory(Long id, CategoryDTO categoryDTO) {
         try {
-            Category category = categoryRepository.getReferenceById(id);
+            Category category = categoryRepository.getOne(id);
             category.setName(categoryDTO.getName());
             category = categoryRepository.save(category);
             return new CategoryDTO(category);
