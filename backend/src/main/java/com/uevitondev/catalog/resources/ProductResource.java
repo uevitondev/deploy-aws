@@ -29,7 +29,7 @@ public class ProductResource {
         return ResponseEntity.ok().body(productService.findProductById(id));
     }
 
-    @PostMapping("/insert")
+    @PostMapping
     public ResponseEntity<ProductDTO> insertProduct(@RequestBody @Valid ProductDTO productDTO) {
         productDTO = productService.insertProduct(productDTO);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(productDTO.getId()).toUri();

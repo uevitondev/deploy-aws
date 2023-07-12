@@ -8,7 +8,6 @@ import com.uevitondev.catalog.repositories.ProductRepository;
 import com.uevitondev.catalog.services.exceptions.DatabaseException;
 import com.uevitondev.catalog.services.exceptions.ResourceNotFoundException;
 import com.uevitondev.catalog.tests.Factory;
-import jakarta.persistence.EntityNotFoundException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -25,6 +24,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.List;
 import java.util.Optional;
 
@@ -69,11 +69,11 @@ public class ProductServiceTests {
         Mockito.when(productRepository.findById(nonExistingId)).thenReturn(Optional.empty());
         Mockito.doThrow(ResourceNotFoundException.class).when(productRepository).findById(nonExistingId);
 
-        Mockito.when(productRepository.getReferenceById(existingId)).thenReturn(product);
-        Mockito.when(productRepository.getReferenceById(nonExistingId)).thenThrow(EntityNotFoundException.class);
+        Mockito.when(productRepository.getOne(existingId)).thenReturn(product);
+        Mockito.when(productRepository.getOne(nonExistingId)).thenThrow(EntityNotFoundException.class);
 
-        Mockito.when(categoryRepository.getReferenceById(existingId)).thenReturn(category);
-        Mockito.when(categoryRepository.getReferenceById(nonExistingId)).thenThrow(EntityNotFoundException.class);
+        Mockito.when(categoryRepository.getOne(existingId)).thenReturn(category);
+        Mockito.when(categoryRepository.getOne(nonExistingId)).thenThrow(EntityNotFoundException.class);
 
     }
 
