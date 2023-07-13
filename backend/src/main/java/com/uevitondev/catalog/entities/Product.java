@@ -1,5 +1,6 @@
 package com.uevitondev.catalog.entities;
 
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.Instant;
