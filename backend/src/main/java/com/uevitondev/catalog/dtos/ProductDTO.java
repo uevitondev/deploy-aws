@@ -16,7 +16,7 @@ import java.util.Set;
 public class ProductDTO implements Serializable {
     private Long id;
 
-    @Size(min = 6, max = 60, message = "nome deve ter entre 5 e 60 caracteres!")
+    @Size(min = 5, max = 60, message = "nome deve ter entre 5 e 60 caracteres!")
     @NotBlank(message = "campo obrigatório!")
     private String name;
 

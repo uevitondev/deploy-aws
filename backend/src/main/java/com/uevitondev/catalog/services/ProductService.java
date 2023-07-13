@@ -35,8 +35,9 @@ public class ProductService {
     public Page<ProductDTO> findAllProductsPaged(Long categoryId, String name, Pageable pageable) {
         try {
             List<Category> categories = (categoryId == 0) ? null : Arrays.asList(categoryRepository.getOne(categoryId));
-            Page<Product> categoryPage = productRepository.find(categories, name, pageable);
-            return categoryPage.map(ProductDTO::new);
+            Page<Product> productPage = productRepository.find(categories, name, pageable);
+            productRepository.findProductsWithCategories(productPage.getContent());
+            return productPage.map(product -> new ProductDTO(product, product.getCategories()));
 
         } catch (PropertyReferenceException e) {
             throw new PageablePropertyException(e.getMessage());
